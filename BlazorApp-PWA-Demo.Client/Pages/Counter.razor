@@ -4,15 +4,30 @@
 
 <h1>Counter</h1>
 
+<p>This component demonstrates interactive state management in Blazor.
+   Each button click updates a C# variable and Blazor automatically re-renders the affected UI.</p>
+
+@* The role="status" attribute announces count changes to screen readers *@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-secondary ms-2" @onclick="ResetCount">Reset</button>
 
 @code {
+    // Private field that holds the current counter value.
+    // Blazor tracks this as component state and re-renders the page whenever it changes.
     private int currentCount = 0;
 
+    // Event handler bound to the "Click me" button via @onclick.
+    // Incrementing currentCount triggers an automatic UI update — no manual DOM manipulation needed.
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    // Resets the counter back to zero, demonstrating that any state change causes a re-render.
+    private void ResetCount()
+    {
+        currentCount = 0;
     }
 }
